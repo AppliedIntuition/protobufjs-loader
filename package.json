@@ -1,6 +1,6 @@
 {
   "name": "protobufjs-loader-webpack4",
-  "version": "0.0.1",
+  "version": "0.0.1+applied",
   "description": "Webpack loader to translate .proto definitions to ProtoBuf.js modules",
   "main": "index.js",
   "scripts": {
