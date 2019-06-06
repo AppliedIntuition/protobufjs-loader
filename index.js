@@ -16,8 +16,8 @@ const validateOptions = require('schema-utils');
 const schema = {
   type: 'object',
   properties: {
-    json: {
-      type: 'boolean',
+    target: {
+      type: 'string',
     },
     paths: {
       type: 'array',
@@ -34,7 +34,7 @@ module.exports = function(source) {
   let self = this;
   let loaderOptions = loaderUtils.getOptions(this)
   const options = Object.assign({
-    json: false,
+    target: 'json-module',
     // Default to the paths given to the compiler (this.options is the
     // webpack options object)
     paths: loaderOptions.paths || [],
@@ -104,10 +104,7 @@ module.exports = function(source) {
     paths.forEach(function(path) {
       args = args.concat(['-p', path]);
     });
-    args = args.concat([
-      '-t',
-      options.json ? 'json-module' : 'static-module',
-    ]).concat([filename]);
+    args = args.concat([ '-t', options.target]).concat([filename]);
 
     pbjs.main(args, function(err, result) {
       // Make sure we've added all dependencies before completing.
